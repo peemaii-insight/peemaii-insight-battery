@@ -160,3 +160,9 @@
     // reset to form view each open
     form.classList.remove('hide'); thanks.classList.remove('show');
     modal.querySelector('.rr-eyebrow').classList.rem
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+  if (loader) {
+    loader.style.display = 'none';
+  }
+});
