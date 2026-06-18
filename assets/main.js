@@ -84,68 +84,41 @@
 
   if (document.getElementById('rrBackdrop')) return; // inject once
 
-  // Language is taken from <html lang="..."> — th.html sets lang="th"
-  var LANG = ((document.documentElement.lang || 'en').toLowerCase().indexOf('th') === 0) ? 'th' : 'en';
-  var STR = {
-    en: {
-      aria: 'Request Executive Resume', eyebrow: 'Private Profile', title: 'Request Executive Resume',
-      sub: 'My full professional profile is shared privately with verified recruiters, executive search firms, business partners, and industry contacts. Please share a few details and I will follow up directly.',
-      name: 'Full Name', phName: 'Your full name', company: 'Company', phCompany: 'Organisation',
-      position: 'Position', phPosition: 'Your role', email: 'Business Email', phEmail: 'name@company.com',
-      emailErr: 'Please enter a valid business email.', purpose: 'Purpose of Contact', selectReason: 'Select a reason',
-      opts: ['Executive search / Recruitment', 'Direct hiring / Employer', 'Business partnership', 'Industry networking', 'Other professional enquiry'],
-      submit: 'Submit Request', sending: 'Sending…', note: 'Your details are used only to respond to this request.',
-      thanks: 'Thank you for your interest. I will review your request and share my professional profile shortly.',
-      thanksSub: 'A response will follow to the email you provided.', close: 'Close'
-    },
-    th: {
-      aria: 'ขอเรซูเม่สำหรับผู้บริหาร', eyebrow: 'โปรไฟล์ส่วนตัว', title: 'ขอเรซูเม่สำหรับผู้บริหาร',
-      sub: 'โปรไฟล์ฉบับเต็มจะถูกแบ่งปันเป็นการส่วนตัวกับผู้สรรหาบุคลากร บริษัทจัดหาผู้บริหาร พันธมิตรทางธุรกิจ และผู้ติดต่อในวงการที่ได้รับการยืนยัน กรุณากรอกข้อมูลเล็กน้อย แล้วจะติดต่อกลับโดยตรง',
-      name: 'ชื่อ–นามสกุล', phName: 'ชื่อ–นามสกุลของคุณ', company: 'บริษัท', phCompany: 'องค์กร / บริษัท',
-      position: 'ตำแหน่ง', phPosition: 'ตำแหน่งของคุณ', email: 'อีเมลธุรกิจ', phEmail: 'name@company.com',
-      emailErr: 'กรุณากรอกอีเมลธุรกิจที่ถูกต้อง', purpose: 'วัตถุประสงค์ในการติดต่อ', selectReason: 'เลือกเหตุผล',
-      opts: ['การสรรหา / Executive Search', 'การว่าจ้างโดยตรง / นายจ้าง', 'ความร่วมมือทางธุรกิจ', 'การสร้างเครือข่ายในวงการ', 'การสอบถามเชิงวิชาชีพอื่น ๆ'],
-      submit: 'ส่งคำขอ', sending: 'กำลังส่ง…', note: 'ข้อมูลของคุณจะถูกใช้เพื่อตอบกลับคำขอนี้เท่านั้น',
-      thanks: 'ขอบคุณสำหรับความสนใจของคุณ จะตรวจสอบคำขอและแบ่งปันโปรไฟล์ทางวิชาชีพให้ในเร็ว ๆ นี้',
-      thanksSub: 'การตอบกลับจะถูกส่งไปยังอีเมลที่คุณระบุไว้', close: 'ปิด'
-    }
-  }[LANG];
-
   var modal = document.createElement('div');
   modal.id = 'rrBackdrop';
   modal.className = 'rr-backdrop';
   modal.setAttribute('role', 'dialog');
   modal.setAttribute('aria-modal', 'true');
-  modal.setAttribute('aria-label', STR.aria);
+  modal.setAttribute('aria-label', 'Request Executive Resume');
   modal.innerHTML =
     '<div class="rr-modal"><div class="rr-inner">' +
       '<button type="button" class="rr-close" data-rr-close aria-label="Close">&times;</button>' +
-      '<span class="rr-eyebrow"><span class="rule"></span>' + STR.eyebrow + '</span>' +
-      '<h2 class="rr-title">' + STR.title + '</h2>' +
-      '<p class="rr-sub">' + STR.sub + '</p>' +
+      '<span class="rr-eyebrow"><span class="rule"></span>Private Profile</span>' +
+      '<h2 class="rr-title">Request Executive Resume</h2>' +
+      '<p class="rr-sub">My full professional profile is shared privately with verified recruiters, executive search firms, business partners, and industry contacts. Please share a few details and I will follow up directly.</p>' +
       '<form class="rr-form" id="rrForm" novalidate>' +
-        '<div class="rr-field"><label for="rrName">' + STR.name + ' <span class="req">*</span></label><input id="rrName" name="name" type="text" autocomplete="name" required placeholder="' + STR.phName + '"></div>' +
+        '<div class="rr-field"><label for="rrName">Full Name <span class="req">*</span></label><input id="rrName" name="name" type="text" autocomplete="name" required placeholder="Your full name"></div>' +
         '<div class="rr-row">' +
-          '<div class="rr-field"><label for="rrCompany">' + STR.company + ' <span class="req">*</span></label><input id="rrCompany" name="company" type="text" autocomplete="organization" required placeholder="' + STR.phCompany + '"></div>' +
-          '<div class="rr-field"><label for="rrPosition">' + STR.position + ' <span class="req">*</span></label><input id="rrPosition" name="position" type="text" autocomplete="organization-title" required placeholder="' + STR.phPosition + '"></div>' +
+          '<div class="rr-field"><label for="rrCompany">Company <span class="req">*</span></label><input id="rrCompany" name="company" type="text" autocomplete="organization" required placeholder="Organisation"></div>' +
+          '<div class="rr-field"><label for="rrPosition">Position <span class="req">*</span></label><input id="rrPosition" name="position" type="text" autocomplete="organization-title" required placeholder="Your role"></div>' +
         '</div>' +
-        '<div class="rr-field"><label for="rrEmail">' + STR.email + ' <span class="req">*</span></label><input id="rrEmail" name="email" type="email" autocomplete="email" required placeholder="' + STR.phEmail + '"><span class="rr-error" id="rrEmailErr">' + STR.emailErr + '</span></div>' +
-        '<div class="rr-field"><label for="rrPurpose">' + STR.purpose + ' <span class="req">*</span></label><select id="rrPurpose" name="purpose" required>' +
-          '<option value="" disabled selected>' + STR.selectReason + '</option>' +
-          '<option>' + STR.opts[0] + '</option>' +
-          '<option>' + STR.opts[1] + '</option>' +
-          '<option>' + STR.opts[2] + '</option>' +
-          '<option>' + STR.opts[3] + '</option>' +
-          '<option>' + STR.opts[4] + '</option>' +
+        '<div class="rr-field"><label for="rrEmail">Business Email <span class="req">*</span></label><input id="rrEmail" name="email" type="email" autocomplete="email" required placeholder="name@company.com"><span class="rr-error" id="rrEmailErr">Please enter a valid business email.</span></div>' +
+        '<div class="rr-field"><label for="rrPurpose">Purpose of Contact <span class="req">*</span></label><select id="rrPurpose" name="purpose" required>' +
+          '<option value="" disabled selected>Select a reason</option>' +
+          '<option>Executive search / Recruitment</option>' +
+          '<option>Direct hiring / Employer</option>' +
+          '<option>Business partnership</option>' +
+          '<option>Industry networking</option>' +
+          '<option>Other professional enquiry</option>' +
         '</select></div>' +
-        '<button type="submit" class="btn btn-gold rr-submit">' + STR.submit + '</button>' +
-        '<p class="rr-note">' + STR.note + '</p>' +
+        '<button type="submit" class="btn btn-gold rr-submit">Submit Request</button>' +
+        '<p class="rr-note">Your details are used only to respond to this request.</p>' +
       '</form>' +
       '<div class="rr-thanks" id="rrThanks">' +
         '<div class="rr-check"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>' +
-        '<h3>' + STR.thanks + '</h3>' +
-        '<p>' + STR.thanksSub + '</p>' +
-        '<button type="button" class="btn btn-line" data-rr-close>' + STR.close + '</button>' +
+        '<h3>Thank you for your interest. I will review your request and share my professional profile shortly.</h3>' +
+        '<p>A response will follow to the email you provided.</p>' +
+        '<button type="button" class="btn btn-line" data-rr-close>Close</button>' +
       '</div>' +
     '</div></div>';
   document.body.appendChild(modal);
@@ -159,10 +132,50 @@
     lastFocus = document.activeElement;
     // reset to form view each open
     form.classList.remove('hide'); thanks.classList.remove('show');
-    modal.querySelector('.rr-eyebrow').classList.rem
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  if (loader) {
-    loader.style.display = 'none';
+    modal.querySelector('.rr-eyebrow').classList.remove('hide');
+    modal.querySelector('.rr-title').classList.remove('hide');
+    modal.querySelector('.rr-sub').classList.remove('hide');
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { var n = modal.querySelector('#rrName'); if (n) n.focus(); }, 60);
   }
-});
+  function close() {
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function showThanks() {
+    form.classList.add('hide');
+    modal.querySelector('.rr-eyebrow').classList.add('hide');
+    modal.querySelector('.rr-title').classList.add('hide');
+    modal.querySelector('.rr-sub').classList.add('hide');
+    thanks.classList.add('show');
+    modal.querySelector('.rr-modal').scrollTop = 0;
+  }
+
+  function emailOk(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  function deliver(data) {
+    // 1) configured form endpoint (recommended)
+    if (RR_ENDPOINT) {
+      var payload = Object.assign({}, data, {
+        access_key: RR_ACCESS_KEY,
+        subject: 'Executive Resume Request — ' + data.name + ' (' + data.company + ')',
+        from_name: data.name
+      });
+      return fetch(RR_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function (r) { return r.ok; }).catch(function () { return false; });
+    }
+    // 2) fallback: open a pre-filled email so nothing is lost
+    var body = 'Executive Resume Request%0D%0A%0D%0A'
+      + 'Full Name: ' + encodeURIComponent(data.name) + '%0D%0A'
+      + 'Company: ' + encodeURIComponent(data.company) + '%0D%0A'
+      + 'Position: ' + encodeURIComponent(data.position) + '%0D%0A'
+      + 'Business Email: ' + encodeURIComponent(data.email) + '%0D%0A'
+      + 'Purpose: ' + encodeURIComponent(data.purpose);
+    var href = 'mailto:' + RR_EMAIL + '?subject=' + encodeURIComponent('Executive Resume Request — ' + data.name) + '&body=' + body;
+    try { window.location.href = href; } catch (e) {}
+    return Promise.resolve(tr
